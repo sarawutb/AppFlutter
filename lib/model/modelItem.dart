@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class itemModel {
-  itemModel({
-    this.idItem,
-    this.nameItem,
-    this.priceItem,
-    this.discountItem,
-    this.starItem,
-    this.dataItem,
-  });
+  itemModel(
+      {this.idItem,
+      this.nameItem,
+      this.priceItem,
+      this.discountItem,
+      this.starItem,
+      this.dataItem,
+      this.imagePath});
 
   int? idItem;
   String? nameItem;
@@ -16,4 +16,5 @@ class itemModel {
   num? priceItem;
   int? starItem;
   TextEditingController? dataItem;
+  dynamic imagePath;
 }

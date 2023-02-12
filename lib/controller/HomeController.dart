@@ -39,13 +39,20 @@ class HomeController {
           idItem: data.idItem,
           nameItem: data.nameItem,
           priceItem: data.priceItem,
-          starItem: data.starItem));
+          starItem: data.starItem,
+          imagePath: data.imagePath));
     }
   }
 
   static List<GetProductAllList>? getProductAllList = [];
   static getProductAll() async {
-    var request = http.Request('GET', Uri.parse('http://192.168.1.41:5000/GetProductAll'));
+
+    var headers = {
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoxLCJzdWIiOiJzYXJhd3V0LmJjczU5QHVicnUuYWMudGgiLCJkYXRlX3RpbWUiOiIyMDIzLTAyLTA5IDIyOjA2OjE5IiwiZXhwIjoxNjc1OTU4Nzc5fQ.7ZWu_jaT1Pc3X8uOJpSVmKb_r-N1oPzqhyyR-NusU2o'
+    };
+
+    var request = http.Request('GET', Uri.parse('http://10.30.2.32:5000/GetProductAll'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();

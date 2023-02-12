@@ -8,13 +8,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../colors/color.dart';
 import '../colors/fontStyle.dart';
 import '../controller/HomeController.dart';
+import '../controller/manager.dart';
 import '../model/modelItem.dart';
 import '../screen/Body.dart';
 import '../screen/Home.dart';
 
 class PopUpDetail extends StatefulWidget {
   // const PopUpDetail({required List<TextEditingController> inputItem, super.key});
-  const PopUpDetail({super.key});
+    const PopUpDetail({super.key, required this.indexData});
+  final int indexData;
   // const PopUpDetail({required TextEditingController this.inputItem, Key? key}) : super(key: key);
 
   @override
@@ -23,6 +25,8 @@ class PopUpDetail extends StatefulWidget {
 
 class _PopUpDetailState extends State<PopUpDetail> {
   TextEditingController inputItem = new TextEditingController();
+
+  Manager manager = new Manager();
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +60,14 @@ class _PopUpDetailState extends State<PopUpDetail> {
                       child: CarouselSlider(
                         items: [
                           ...List.generate(
-                            3,
+                          HomeController.getProductAllList![widget.indexData].pathProductImage.length,
                             (index) => Container(
                               // margin: EdgeInsets.all(1.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2017/01/08/13/58/cube-1963036__340.jpg"),
+                                      HomeController.getProductAllList![widget.indexData].pathProductImage[index].toString()),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -110,7 +114,7 @@ class _PopUpDetailState extends State<PopUpDetail> {
                         padding: EdgeInsets.all(10),
                         alignment: Alignment.center,
                         child: Text(
-                          "WARRIX เสื้อโปโลแขนสั้น WA-3315NWARRIX เสื้อโปโลแขนสั้น WA-3315NWARRIX",
+                          HomeController.getProductAllList![widget.indexData].nameProduct.toString(),
                           style: fontDetailList,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
@@ -123,12 +127,12 @@ class _PopUpDetailState extends State<PopUpDetail> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "฿1,990",
+                            HomeController.getProductAllList![widget.indexData].priceProduct,
                             style: TextStyle(color: mainBar),
                           ),
                           Container(
                               padding: EdgeInsets.only(left: 5),
-                              child: Text("฿2,990",
+                              child: Text(HomeController.getProductAllList![widget.indexData].discountProduct,
                                   style: TextStyle(
                                     fontSize: 11,
                                     decoration: TextDecoration.lineThrough,
@@ -143,7 +147,7 @@ class _PopUpDetailState extends State<PopUpDetail> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           ...List.generate(
-                            4,
+                            int.parse(HomeController.getProductAllList![widget.indexData].starProduct.toString()),
                             (index) => Icon(
                               Icons.star_outlined,
                               color: Colors.yellow.shade700,
@@ -235,12 +239,13 @@ class _PopUpDetailState extends State<PopUpDetail> {
                                 context: context,
                                 data: itemModel(
                                     dataItem: inputItem,
-                                    discountItem: "",
-                                    idItem: 1,
+                                    discountItem: HomeController.getProductAllList![widget.indexData].discountProduct,
+                                    idItem: HomeController.getProductAllList![widget.indexData].id,
                                     nameItem:
-                                        "WARRIX เสื้อโปโลแขนสั้น WA-3315NWARRIX เสื้อโปโลแขนสั้น WA-3315NWARRIX",
-                                    priceItem: 1990,
-                                    starItem: 5));
+                                        HomeController.getProductAllList![widget.indexData].nameProduct,
+                                    priceItem: int.parse(HomeController.getProductAllList![widget.indexData].priceProduct.toString()),
+                                    starItem: 5,
+                                    imagePath: HomeController.getProductAllList![widget.indexData].pathProductImage.first));
                           });
                         }
                       },

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import '../colors/color.dart';
 import '../colors/fontStyle.dart';
 import '../controller/HomeController.dart';
+import '../routes/routes.dart';
 import '../widgets/itemShop.dart';
 import '../widgets/tab1.dart';
 import '../widgets/tab2.dart';
@@ -42,6 +43,7 @@ class _HomeState extends State<Home> {
   // ];
   @override
   void initState() {
+    InitRoute.initRouter = 2;
     _timer = new Timer.periodic(const Duration(seconds: 2), (Timer _timer) => {setState(() {})});
     HomeController.getProductAll();
     // for (int i = 0; i < 9; i++) {

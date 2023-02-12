@@ -45,229 +45,238 @@ Widget Tab2() {
                             // Text("${HomeController.getProductAllList?.length}"),
                             ...List.generate(
                                 HomeController.getProductAllList!.length,
-                                (index) => Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(15),
-                                          border: Border.all(width: 0.1, color: Colors.black)),
-                                      width: 170,
-                                      // height: 300,
-                                      padding: EdgeInsets.symmetric(vertical: 10),
-                                      margin: EdgeInsets.all(5),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          // setState(() {
+                                (index) => double.parse(HomeController
+                                            .getProductAllList![index].discountProduct
+                                            .toString()) !=
+                                        0
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(15),
+                                            border: Border.all(width: 0.1, color: Colors.black)),
+                                        width: 170,
+                                        height: 280,
+                                        padding: EdgeInsets.symmetric(vertical: 10),
+                                        margin: EdgeInsets.all(5),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            // setState(() {
 
-                                          //   context.go('/detailPopup');
+                                            //   context.go('/detailPopup');
 
-                                          // });
-                                          // var datainputItem =
-                                          //     HomeController.inputItem[index].dataItem!.text = "1";
-                                          showDialog<void>(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return PopUpDetail(
-                                                    // inputItem: HomeController.inputItem[index].dataItem!,
-                                                    );
-                                              });
+                                            // });
+                                            // var datainputItem =
+                                            //     HomeController.inputItem[index].dataItem!.text = "1";
+                                            showDialog<void>(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return PopUpDetail(
+                                                    indexData: index,
+                                                      // inputItem: HomeController.inputItem[index].dataItem!,
+                                                      );
+                                                });
 
-                                          // print(HomeController.listData);
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              // margin: EdgeInsets.only(top: 10),
+                                            // print(HomeController.listData);
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 140,
+                                                // margin: EdgeInsets.only(top: 10),
 
-                                              child: Image.network(
-                                                HomeController
-                                                    .getProductAllList![index].urlProductImage,
-                                                width: 150,
+                                                child: Image.network(
+                                                  HomeController.getProductAllList![index]
+                                                      .pathProductImage.first,
+                                                  // width: 150,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
-                                            ),
 
-                                            Container(
+                                              Container(
+
+                                                  // color: mainBar,
+
+                                                  // height: 50,
+
+                                                  padding: EdgeInsets.all(10),
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    HomeController
+                                                        .getProductAllList![index].detailProduct,
+                                                    style: fontDetailList,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 2,
+                                                  )),
+
+                                              // const Spacer(),
+
+                                              Container(
+                                                padding: EdgeInsets.only(left: 15),
 
                                                 // color: mainBar,
 
-                                                // height: 50,
-
-                                                padding: EdgeInsets.all(10),
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  HomeController
-                                                      .getProductAllList![index].detailProduct,
-                                                  style: fontDetailList,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  maxLines: 2,
-                                                )),
-
-                                            // const Spacer(),
-
-                                            Container(
-                                              padding: EdgeInsets.only(left: 15),
-
-                                              // color: mainBar,
-
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    HomeController
-                                                        .getProductAllList![index].priceProduct,
-                                                    style: TextStyle(color: mainBar),
-                                                  ),
-                                                  Container(
-                                                      padding: EdgeInsets.only(left: 5),
-                                                      child: Text(
-                                                          HomeController.getProductAllList![index]
-                                                              .discountProduct,
-                                                          style: TextStyle(
-                                                            color: HomeController
-                                                                        .getProductAllList![index]
-                                                                        .discountProduct ==
-                                                                    "0"
-                                                                ? Colors.white
-                                                                : Colors.black,
-                                                            fontSize: 11,
-                                                            decoration: TextDecoration.lineThrough,
-                                                          ))),
-                                                ],
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                  children: [
+                                                    Text(
+                                                      HomeController
+                                                          .getProductAllList![index].priceProduct,
+                                                      style: TextStyle(color: mainBar),
+                                                    ),
+                                                    Container(
+                                                        padding: EdgeInsets.only(left: 5),
+                                                        child: Text(
+                                                            HomeController.getProductAllList![index]
+                                                                .discountProduct,
+                                                            style: TextStyle(
+                                                              color: HomeController
+                                                                          .getProductAllList![index]
+                                                                          .discountProduct ==
+                                                                      "0"
+                                                                  ? Colors.white
+                                                                  : Colors.black,
+                                                              fontSize: 11,
+                                                              decoration:
+                                                                  TextDecoration.lineThrough,
+                                                            ))),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
 
-                                            Container(
-                                              padding: EdgeInsets.only(right: 10, top: 5),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                children: [
-                                                  ...List.generate(
-                                                    4,
-                                                    (index) => Icon(
-                                                      Icons.star_outlined,
+                                              Container(
+                                                padding: EdgeInsets.only(right: 10, top: 5),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                  children: [
+                                                    ...List.generate(
+                                                      4,
+                                                      (index) => Icon(
+                                                        Icons.star_outlined,
+                                                        color: Colors.yellow.shade700,
+                                                        size: 15,
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.star_half_sharp,
                                                       color: Colors.yellow.shade700,
                                                       size: 15,
                                                     ),
-                                                  ),
-                                                  Icon(
-                                                    Icons.star_half_sharp,
-                                                    color: Colors.yellow.shade700,
-                                                    size: 15,
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
 
-                                            // Row(
+                                              // Row(
 
-                                            //   mainAxisAlignment: MainAxisAlignment.center,
+                                              //   mainAxisAlignment: MainAxisAlignment.center,
 
-                                            //   children: [
+                                              //   children: [
 
-                                            //     // const Spacer(),
+                                              //     // const Spacer(),
 
-                                            //     IconButton(
+                                              //     IconButton(
 
-                                            //       onPressed: () {
+                                              //       onPressed: () {
 
-                                            //         if (int.parse(inputItem[index].text) > 0) {
+                                              //         if (int.parse(inputItem[index].text) > 0) {
 
-                                            //           inputItem[index].text =
+                                              //           inputItem[index].text =
 
-                                            //               (int.parse(inputItem[index].text) - 1).toString();
+                                              //               (int.parse(inputItem[index].text) - 1).toString();
 
-                                            //         }
+                                              //         }
 
-                                            //       },
+                                              //       },
 
-                                            //       icon: FaIcon(
+                                              //       icon: FaIcon(
 
-                                            //         FontAwesomeIcons.minus,
+                                              //         FontAwesomeIcons.minus,
 
-                                            //         size: 15,
+                                              //         size: 15,
 
-                                            //       ),
+                                              //       ),
 
-                                            //     ),
+                                              //     ),
 
-                                            //     Container(
+                                              //     Container(
 
-                                            //       color: mainWhite,
+                                              //       color: mainWhite,
 
-                                            //       width: 50,
+                                              //       width: 50,
 
-                                            //       height: 30,
+                                              //       height: 30,
 
-                                            //       child: TextField(
+                                              //       child: TextField(
 
-                                            //         textAlign: TextAlign.center,
+                                              //         textAlign: TextAlign.center,
 
-                                            //         cursorColor: Colors.black,
+                                              //         cursorColor: Colors.black,
 
-                                            //         cursorWidth: 1,
+                                              //         cursorWidth: 1,
 
-                                            //         cursorHeight: 20,
+                                              //         cursorHeight: 20,
 
-                                            //         decoration: InputDecoration(
+                                              //         decoration: InputDecoration(
 
-                                            //           filled: false,
+                                              //           filled: false,
 
-                                            //           enabledBorder: OutlineInputBorder(
+                                              //           enabledBorder: OutlineInputBorder(
 
-                                            //             borderSide:
+                                              //             borderSide:
 
-                                            //                 BorderSide(width: 1, color: Colors.blueAccent),
+                                              //                 BorderSide(width: 1, color: Colors.blueAccent),
 
-                                            //           ),
+                                              //           ),
 
-                                            //           focusedBorder: OutlineInputBorder(
+                                              //           focusedBorder: OutlineInputBorder(
 
-                                            //             borderSide:
+                                              //             borderSide:
 
-                                            //                 BorderSide(width: 1, color: Colors.blueAccent),
+                                              //                 BorderSide(width: 1, color: Colors.blueAccent),
 
-                                            //           ),
+                                              //           ),
 
-                                            //           contentPadding: EdgeInsets.all(6),
+                                              //           contentPadding: EdgeInsets.all(6),
 
-                                            //         ),
+                                              //         ),
 
-                                            //         style: fontBar,
+                                              //         style: fontBar,
 
-                                            //         controller: inputItem[index],
+                                              //         controller: inputItem[index],
 
-                                            //       ),
+                                              //       ),
 
-                                            //     ),
+                                              //     ),
 
-                                            //     IconButton(
+                                              //     IconButton(
 
-                                            //       onPressed: () {
+                                              //       onPressed: () {
 
-                                            //         inputItem[index].text =
+                                              //         inputItem[index].text =
 
-                                            //             (int.parse(inputItem[index].text) + 1).toString();
+                                              //             (int.parse(inputItem[index].text) + 1).toString();
 
-                                            //       },
+                                              //       },
 
-                                            //       icon: FaIcon(
+                                              //       icon: FaIcon(
 
-                                            //         FontAwesomeIcons.plus,
+                                              //         FontAwesomeIcons.plus,
 
-                                            //         size: 15,
+                                              //         size: 15,
 
-                                            //       ),
+                                              //       ),
 
-                                            //     ),
+                                              //     ),
 
-                                            //   ],
+                                              //   ],
 
-                                            // )
-                                          ],
+                                              // )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ))
+                                      )
+                                    : SizedBox())
                           ],
                         ),
                       )),

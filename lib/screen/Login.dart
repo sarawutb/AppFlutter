@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../colors/color.dart';
 import '../colors/fontStyle.dart';
 import '../controller/HomeController.dart';
+import '../controller/manager.dart';
+import '../routes/routes.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -14,11 +16,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  List<String> titles = <String>[
-    'สินค้า',
-    'รายการสั่งซื้อ',
-    'รายการยกเลิก',
-  ];
+  @override
+  void initState() {
+    InitRoute.initRouter = 1;
+    super.initState();
+  }
+
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +97,7 @@ class _LoginState extends State<Login> {
                             ],
                           ),
                           child: TextField(
+                            controller: email,
                             cursorColor: mainBluedark,
                             textAlign: TextAlign.start,
                             decoration: InputDecoration(
@@ -120,6 +126,7 @@ class _LoginState extends State<Login> {
                             ],
                           ),
                           child: TextField(
+                            controller: password,
                             cursorColor: mainBluedark,
                             textAlign: TextAlign.start,
                             decoration: InputDecoration(
@@ -161,7 +168,9 @@ class _LoginState extends State<Login> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                context.go("/Home");
+                                // context.go("/Home");
+                                Manager manager = new Manager();
+                                manager.login(email: email.text,password: password.text,context: context);
                                 HomeController.initTab = 0;
                               },
                               child: Container(

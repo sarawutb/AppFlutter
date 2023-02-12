@@ -54,7 +54,7 @@ Widget Tab1() {
                                           borderRadius: BorderRadius.circular(15),
                                           border: Border.all(width: 0.1, color: Colors.black)),
                                       width: 170,
-                                      // height: 300,
+                                      height: 280,
                                       padding: EdgeInsets.symmetric(vertical: 10),
                                       margin: EdgeInsets.all(5),
                                       child: GestureDetector(
@@ -80,12 +80,14 @@ Widget Tab1() {
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Container(
+                                              height: 140,
                                               // margin: EdgeInsets.only(top: 10),
 
                                               child: Image.network(
                                                 HomeController
-                                                    .getProductAllList![index].urlProductImage,
-                                                width: 150,
+                                                    .getProductAllList![index].pathProductImage.first,
+                                                // width: 150,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
 

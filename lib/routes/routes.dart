@@ -7,6 +7,10 @@ import '../screen/ListItem.dart';
 import '../screen/Login.dart';
 import '../screen/Register.dart';
 
+class InitRoute {
+ static int initRouter = 1;
+}
+
 GoRouter routes() {
   return GoRouter(
     routes: <RouteBase>[
@@ -16,7 +20,7 @@ GoRouter routes() {
         pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
           context: context,
           state: state,
-          child: Login(),
+          child: InitRoute.initRouter == 1 ? Login() :InitRoute.initRouter == 2 ? BodyHome(body: Home()) :InitRoute.initRouter == 3 ? Register() : Login(),
         ),
         // builder: (BuildContext context, GoRouterState state) {
         //   return BodyHome(body: Home());

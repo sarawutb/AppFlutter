@@ -13,7 +13,9 @@ Widget itemShop() {
         context.go("/Home");
         return Future.value(false);
       },
-      child: Container(
+      child: 
+      HomeController.inputItem.isNotEmpty ?
+      Container(
         child: ListView.builder(
           physics: BouncingScrollPhysics(),
           itemCount: HomeController.inputItem.length,
@@ -32,7 +34,7 @@ Widget itemShop() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.network(
-                          'https://lzd-img-global.slatic.net/g/p/75be5f1e8c6d3d3577a76437ac7cbf60.jpg_720x720q80.jpg',
+                          HomeController.inputItem[index].imagePath,
                           width: 100,
                         ),
                         Container(
@@ -40,7 +42,7 @@ Widget itemShop() {
                             child: Column(children: [
                               Container(
                                 child: Text(
-                                  "WARRIX เสื้อโปโลแขนสั้น WA-3315NWARRIX เสื้อโปโลแขนสั้น Test-0000123456789- WA-3315N",
+                                  HomeController.inputItem[index].nameItem.toString(),
                                   style: fontDetailList,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 3,
@@ -53,12 +55,12 @@ Widget itemShop() {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      "฿1,990",
+                                      HomeController.inputItem[index].priceItem.toString(),
                                       style: TextStyle(color: mainBar),
                                     ),
                                     Container(
                                         padding: EdgeInsets.only(left: 5),
-                                        child: Text("฿2,990",
+                                        child: Text(HomeController.inputItem[index].discountItem.toString(),
                                             style: TextStyle(
                                               fontSize: 11,
                                               decoration: TextDecoration.lineThrough,
@@ -138,7 +140,7 @@ Widget itemShop() {
             );
           },
         ),
-      ),
+      ) : SizedBox()
     ),
   );
 }
